@@ -1,7 +1,9 @@
 (ns caius.core-test
   (:require [clojure.test :refer :all]
-            [caius.core :refer :all]))
+            [caius.core :refer :all]
+            [ring.mock.request :as mock]))
 
-(deftest a-test
-  (testing "FIXME, I fail."
-    (is (= 0 1))))
+(deftest article-handler-test
+  (testing "Create a basic article"
+    (is (= (create-article (mock/request :post "/article"))
+           "Parsing the url: "))))
