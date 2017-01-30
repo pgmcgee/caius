@@ -3,7 +3,9 @@
             [caius.core :refer :all]
             [ring.mock.request :as mock]))
 
-(deftest article-handler-test
+(deftest app-test
   (testing "Create a basic article"
-    (is (= (create-article (mock/request :post "/article"))
-           "Parsing the url: "))))
+    (is (= (app (mock/request :post "/article" {:url "http://www.example.com/"}))
+           {:status 200,
+            :headers {"Content-Type" "text/html; charset=utf-8"},
+            :body "Parsing the url: http://www.example.com/"}))))
