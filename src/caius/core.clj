@@ -5,7 +5,13 @@
             [bouncer.core :as b]
             [bouncer.validators :as v]
             [ring.middleware.json :refer [wrap-json-params]]
-            [ring.util.response :refer [response status]]))
+            [ring.util.response :refer [response status]]
+            [ring.middleware.defaults :as middleware]
+            [clojure.core.async :as async]))
+
+(defn grab-dom [url]
+  (let [c (async/chan)]
+    (async/go )))
 
 (defn validate-article-params [params]
   (first
@@ -24,5 +30,5 @@
   (route/not-found "<h1>Page not found</h1>"))
 
 (def app
-  (-> (handler/site app-routes)
+  (-> (middleware/wrap-defaults app-routes middleware/api-defaults)
       (wrap-json-params)))

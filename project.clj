@@ -8,6 +8,10 @@
                  [ring/ring-json "0.4.0"]
                  [ring/ring-mock "0.3.0"]
                  [ring/ring-jetty-adapter "1.5.1"]
-                 [bouncer "1.0.0"]]
+                 [bouncer "1.0.0"]
+                 [ring/ring-defaults "0.2.1"]
+                 [org.clojure/core.async "0.2.395"]
+                 [environ "1.1.0"]
+                 [org.seleniumhq.selenium/selenium-server "3.0.1"]]
   :plugins [[lein-ring "0.10.0"]]
   :ring {:handler caius.core/app})
