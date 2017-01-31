@@ -7,6 +7,7 @@
                  [compojure "1.5.2"]
                  [ring/ring-json "0.4.0"]
                  [ring/ring-mock "0.3.0"]
-                 [ring/ring-jetty-adapter "1.5.1"]]
+                 [ring/ring-jetty-adapter "1.5.1"]
+                 [bouncer "1.0.0"]]
   :plugins [[lein-ring "0.10.0"]]
   :ring {:handler caius.core/app})

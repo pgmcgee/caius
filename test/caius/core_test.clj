@@ -8,4 +8,7 @@
     (is (= (app (mock/request :post "/article" {:url "http://www.example.com/"}))
            {:status 200,
             :headers {"Content-Type" "text/html; charset=utf-8"},
-            :body "Parsing the url: http://www.example.com/"}))))
+            :body "Parsing the url: http://www.example.com/"})))
+  (testing "Throw a 400 if the URL is not specified"
+    (is (= (:status (app (mock/request :post "/article")))
+           400))))
