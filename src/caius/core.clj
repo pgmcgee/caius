@@ -7,11 +7,8 @@
             [ring.middleware.json :refer [wrap-json-params]]
             [ring.util.response :refer [response status]]
             [ring.middleware.defaults :as middleware]
-            [clojure.core.async :as async]))
-
-(defn grab-dom [url]
-  (let [c (async/chan)]
-    (async/go )))
+            [caius.browser :as browser]
+            [caius.extraction :as extraction]))
 
 (defn validate-article-params [params]
   (first
@@ -22,7 +19,8 @@
   (if-let [errors (validate-article-params params)]
     (-> (response errors)
         (status 400))
-    (str "Parsing the url: " (:url params))))
+    (-> (browser/get-dom (:url params))
+        (extraction/extract-article))))
 
 (defroutes app-routes
   (GET "/" [] "<h1>Hello World</h1>")
