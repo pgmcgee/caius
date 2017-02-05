@@ -4,13 +4,14 @@
            [java.util.concurrent TimeUnit])
   (:require [environ.core :refer [env]]))
 
-(def selenium-port (env :selenium-port))
+(def selenium-hostname (or (env :selenium-hostname) "selenium-chrome"))
+(def selenium-port (or (env :selenium-port) 4444))
 
 (defn create-webdriver
   ([] (create-webdriver selenium-port))
   ([port]
    (RemoteWebDriver.
-    (URL. (str "http://localhost:" port "/wd/hub"))
+    (URL. (str "http://" selenium-hostname ":" port "/wd/hub"))
     (DesiredCapabilities/chrome))))
 
 (defn get-dom

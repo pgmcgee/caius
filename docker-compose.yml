@@ -1,0 +1,8 @@
+version: '2'
+services:
+  caius-web:
+    build: .
+    ports:
+      - "3000:3000"
+  selenium-chrome:
+    image: "selenium/standalone-chrome"
